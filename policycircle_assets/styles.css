@@ -978,3 +978,76 @@ body{background:#101010}
 .dlv div::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;
   border-radius:50%;background:var(--accent)}
 @media (max-width:740px){ .dlv{grid-template-columns:1fr} .tldr .r{grid-template-columns:1fr;gap:4px} }
+
+/* ============================================================
+   Light theme for the content pages, matching the Empower MS
+   deck: white sheets on a dark ground, with the cover and the
+   closing page still on the client's navy. Declared last so it
+   wins over the dark tokens above, and repeated on .doc because
+   .doc sets its own text colours.
+   ============================================================ */
+:root{
+  --bg-page:        #FFFFFF;
+  --bg-raised:      #FAFAFA;
+  --surface-card:   #FAF2EC;   /* callouts, a soft tint of the brand blush */
+  --surface-elev:   #F4F4F5;
+  --surface-control: #EFEFF1;
+  --surface-control-hover: #E6E6E9;
+
+  --text-primary:   #0A0A0A;
+  --text-secondary: #52525B;
+  --text-muted:     #7A7A85;
+
+  --border-subtle:  rgba(0,0,0,0.09);
+  --border-default: rgba(0,0,0,0.14);
+  --border-strong:  rgba(0,0,0,0.22);
+
+  /* darker terracotta so small accent text clears contrast on white */
+  --accent:         #A9531F;
+  --accent-hover:   #8F4418;
+  --lime-tint:      rgba(169,83,31,0.12);
+
+  /* the white top-edge highlight only reads on dark cards */
+  --inset-hairline: 0 0 transparent;
+  --shadow-md:      0 6px 20px rgba(0,0,0,0.12);
+}
+.doc{--text-secondary:#52525B;--text-muted:#7A7A85}
+body{background:#1A1A1A}
+
+/* Components that hard-coded a colour for the dark ground. */
+.evo .c.opt{border-color:rgba(0,0,0,0.18)}
+.find code{color:#1F5C7A;background:rgba(31,92,122,.08)}
+.rangebar{background:linear-gradient(90deg,rgba(169,83,31,.28),var(--accent))}
+
+/* The navy pages keep the brighter terracotta, which needs the
+   contrast the other way round. */
+.page.navy .eyebrow,.page.navy ul.ticks li::before,
+.page.navy .evo .c .tag,.page.navy .tldr .k{color:var(--tpc-terra-400)}
+
+/* The PaoloR mark is a white knockout, so it needs inverting on the
+   light pages. The navy pages already invert it inside a white chip. */
+.page:not(.navy) .brand img{filter:brightness(0)}
+
+/* The before-and-after table sits on a navy page, so it needs the
+   light-theme text colours reversed back out. */
+.page.navy .ba th{color:rgba(255,255,255,.55)}
+.page.navy .ba th:last-child{color:var(--tpc-terra-400)}
+.page.navy .ba td{border-top-color:rgba(255,255,255,.14)}
+.page.navy .ba td:first-child{color:rgba(255,255,255,.6)}
+.page.navy .ba td:nth-child(2){color:rgba(255,255,255,.72)}
+.page.navy .ba td:last-child{color:#fff}
+
+/* ============================================================
+   Scroll reveal. The .reveal class is added by script, so with
+   JavaScript off or unavailable every page renders as normal.
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(22px);
+  transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);
+  transition-delay:var(--d,0ms);will-change:opacity,transform}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+}
+@media print{
+  .reveal{opacity:1 !important;transform:none !important;transition:none !important}
+}

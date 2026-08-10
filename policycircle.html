@@ -395,4 +395,46 @@
   </section>
 
 </div>
+
+<script>
+/* Scroll reveal. Every element starts visible in the markup; the class
+   that hides it is only ever added here, so nothing can get stuck
+   invisible if this script fails to run. */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  /* Blocks whose children are worth revealing one at a time rather
+     than as a single slab. */
+  var GROUPS = '.stats,.finds,.months,.models,.grid2,.evo,.dlv,.who,.clients,.nav2,ul.ticks,ol.steps';
+  var targets = [];
+
+  document.querySelectorAll('.page').forEach(function (page) {
+    Array.prototype.forEach.call(page.children, function (child) {
+      if (child.classList.contains('phead') || child.classList.contains('pfoot')) return;
+      if (child.matches(GROUPS)) {
+        Array.prototype.forEach.call(child.children, function (item, i) {
+          item.style.setProperty('--d', Math.min(i * 60, 300) + 'ms');
+          targets.push(item);
+        });
+      } else {
+        targets.push(child);
+      }
+    });
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+
+  targets.forEach(function (el) {
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+})();
+</script>
 </body></html>
