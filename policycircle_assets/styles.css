@@ -950,3 +950,18 @@ body{background:#101010}
 .who .c h3{margin:0 0 6px;font-size:15.5px;font-weight:600;letter-spacing:-.02em}
 .who .c p{margin:0;font-size:13.2px;line-height:1.55;color:var(--text-secondary)}
 @media (max-width:740px){ .who{grid-template-columns:1fr} }
+
+/* Portrait and intro, side by side at the top of the credibility page. */
+.whohead{display:grid;grid-template-columns:190px 1fr;gap:30px;align-items:start;margin-top:6px}
+.portrait img{width:100%;border-radius:14px;display:block;box-shadow:var(--shadow-md)}
+.portrait .nm{margin-top:12px;font-size:15px;font-weight:600;letter-spacing:-.02em}
+.portrait .rl{margin-top:3px;font-size:12.5px;line-height:1.45;color:var(--accent);font-weight:500}
+
+/* Client names, set as a text wall rather than logos. */
+.clients{display:grid;grid-template-columns:1fr 1fr;gap:24px 34px;margin-top:16px}
+.clients .col .h{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--text-muted);font-weight:500;margin-bottom:12px}
+.clients .col .names{font-size:17px;line-height:1.65;font-weight:600;letter-spacing:-.02em;
+  color:var(--text-primary)}
+.clients .col .names span{color:var(--text-muted);font-weight:400}
+@media (max-width:740px){ .whohead{grid-template-columns:1fr} .clients{grid-template-columns:1fr} }
