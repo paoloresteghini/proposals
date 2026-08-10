@@ -918,3 +918,20 @@ body{background:#101010}
 /* Tighter row rhythm for the longer page table. */
 .gaps.tight td{padding-top:11px;padding-bottom:11px;font-size:14px}
 .gaps.tight th{padding-bottom:9px}
+
+/* Before and after table. Three columns, with the "after" column carrying
+   the accent so the contrast is readable at a glance. */
+.ba{width:100%;border-collapse:collapse;margin-top:18px}
+.ba th{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-muted);font-weight:500;text-align:left;padding:0 18px 11px 0}
+.ba th:last-child{color:var(--accent);padding-right:0}
+.ba td{padding:13px 18px 13px 0;border-top:1px solid var(--border-subtle);
+  font-size:13.8px;line-height:1.5;vertical-align:top}
+.ba td:first-child{color:var(--text-muted);width:22%}
+.ba td:nth-child(2){color:var(--text-secondary);width:39%}
+.ba td:last-child{color:var(--text-primary);font-weight:500;padding-right:0;width:39%}
+@media (max-width:740px){
+  .ba td:first-child{width:auto}
+  .ba,.ba tbody,.ba tr,.ba td,.ba th{display:block;width:auto}
+  .ba th{display:none}
+}
