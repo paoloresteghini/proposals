@@ -935,3 +935,18 @@ body{background:#101010}
   .ba,.ba tbody,.ba tr,.ba td,.ba th{display:block;width:auto}
   .ba th{display:none}
 }
+
+/* Loud placeholder. Deliberately garish so an unfinished page cannot be
+   sent by mistake. Delete the .fillme rules and the markup together. */
+.fillme{background:#FFE500;color:#000;font-weight:700;padding:1px 7px;border-radius:4px;
+  font-size:12.5px;letter-spacing:.02em;display:inline-block}
+.fillbox{border:2px dashed #FFE500;border-radius:12px;padding:18px 20px;margin-top:24px;
+  background:rgba(255,229,0,.07)}
+.fillbox b{color:#FFE500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  display:block;margin-bottom:7px}
+.fillbox p{margin:0;font-size:13.5px;line-height:1.6;color:var(--text-secondary)}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.who .c{border-top:2px solid var(--accent);padding-top:15px}
+.who .c h3{margin:0 0 6px;font-size:15.5px;font-weight:600;letter-spacing:-.02em}
+.who .c p{margin:0;font-size:13.2px;line-height:1.55;color:var(--text-secondary)}
+@media (max-width:740px){ .who{grid-template-columns:1fr} }
