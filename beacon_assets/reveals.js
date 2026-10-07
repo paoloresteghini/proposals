@@ -2,7 +2,7 @@
   if (!('IntersectionObserver' in window)) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const toggle = document.querySelector('.motion-toggle');
-  const selector = '.sheet > h1, .sheet > h2, .sheet > .lede, .cover > div, .visual-points > section, .sheet > .visual-summary, .delivery-steps > section, .sheet > .project-proof, .scope > section, .timeline > .row, .sheet > .callout, .sheet > .support-callout, .sheet > table, #optimization-priorities > table, .sheet > .brief-next, .sheet > .price';
+  const selector = '.sheet > h1, .sheet > h2, .sheet > .lede, .cover > div, .delivery-steps > section, .sheet > .project-proof, .scope > section, .timeline > .row, .sheet > .callout, .sheet > .support-callout, .sheet > table, #optimization-priorities > table, .sheet > .brief-next, .sheet > .price';
   let requested = true;
   const targets = [...document.querySelectorAll(selector)];
   const pending = new Set();
