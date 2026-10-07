@@ -2,7 +2,8 @@
   if (!('IntersectionObserver' in window)) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const toggle = document.querySelector('.motion-toggle');
-  const selector = '.sheet > h1, .sheet > h2, .sheet > .lede, .cover > div, .sheet > .issue-overview, .sheet > .compact-issue, .page-previews > section, .delivery-steps > section, .sheet > .project-proof, .diagram-pair > section, .scope > section, .timeline > .row, .sheet > .callout, .sheet > .support-callout, .sheet > table, #optimization-priorities > table, .sheet > .brief-next, .sheet > .price';
+  const selector = '.sheet > h1, .sheet > h2, .sheet > .lede, .cover > div, .visual-points > section, .sheet > .visual-summary, .delivery-steps > section, .sheet > .project-proof, .scope > section, .timeline > .row, .sheet > .callout, .sheet > .support-callout, .sheet > table, #optimization-priorities > table, .sheet > .brief-next, .sheet > .price';
+  let requested = true;
   const targets = [...document.querySelectorAll(selector)];
   const pending = new Set();
   const observer = new IntersectionObserver(entries => {
@@ -32,6 +33,7 @@
     targets.forEach(element => element.classList.add('reveal-instant'));
   }
 
+  syncMotion();
   if (enabled()) {
     targets.forEach(element => {
       // Leave the initial viewport visible and avoid hiding content already read.
@@ -41,8 +43,22 @@
       observer.observe(element);
     });
   }
-  reduced.addEventListener('change', showAll);
-  if (toggle) new MutationObserver(showAll).observe(toggle, { attributes: true, attributeFilter: ['aria-pressed'] });
+  function syncMotion() {
+    const active = requested && !reduced.matches;
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.disabled = reduced.matches;
+      toggle.textContent = active ? 'Motion on' : 'Motion off';
+      toggle.setAttribute('aria-pressed', String(active));
+      toggle.setAttribute('aria-label', active ? 'Turn animations off' : 'Turn animations on');
+    }
+    showAll();
+  }
+  reduced.addEventListener('change', syncMotion);
+  if (toggle) toggle.addEventListener('click', () => {
+    requested = !requested;
+    syncMotion();
+  });
   document.addEventListener('focusin', event => {
     pending.forEach(element => {
       if (element.contains(event.target)) showImmediately(element);
