@@ -62,7 +62,7 @@
     toggle.disabled = reduced.matches;
     toggle.textContent = enabled ? 'Motion on' : 'Motion off';
     toggle.setAttribute('aria-pressed', String(enabled));
-    toggle.setAttribute('aria-label', enabled ? 'Turn diagram motion off' : 'Turn diagram motion on');
+    toggle.setAttribute('aria-label', enabled ? 'Turn animations off' : 'Turn animations on');
     diagrams.forEach(diagram => {
       if (!enabled) stop(diagram);
       diagram.querySelector('.diagram-replay').disabled = !enabled;

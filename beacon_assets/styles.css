@@ -61,3 +61,11 @@ table{border-collapse:collapse;width:100%;margin-bottom:24px;font-size:14px;line
 @media(hover:hover) and (pointer:fine){.section-jump:hover,.section-menu-close:hover{border-color:#ffc23c;color:#ffc23c}.section-menu a:hover{color:#ffc23c}}
 @media(max-width:700px){.section-jump{right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom))}.section-menu{padding:86px 24px 40px}.section-menu-close{right:16px;top:20px}.section-menu a{gap:16px;padding:17px 4px;font-size:25px}.section-menu-number{width:22px;font-size:12px}}
 @media print{.section-jump,.section-menu{display:none!important}.section-nav-open{overflow:visible}}
+
+/* Once-only reveals as proposal content enters the viewport */
+.scroll-reveal{transition:opacity 300ms var(--ease-out) var(--reveal-delay,0ms),transform 300ms var(--ease-out) var(--reveal-delay,0ms)}
+.reveal-pending{opacity:0;transform:translateY(8px)}
+table.reveal-pending{transform:none}
+.reveal-instant{transition:none!important}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1!important;transform:none!important;transition:none!important}}
+@media print{.scroll-reveal{opacity:1!important;transform:none!important;transition:none!important}}
